@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dungeon of the Shattered Crown</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">D&D-inspired browser crawler</p>
+        <h1>Dungeon of the Shattered Crown</h1>
+      </div>
+      <button id="newGameBtn" class="ghost">New game</button>
+    </header>
+
+    <section class="layout">
+      <section class="scene-card">
+        <div id="scene" class="scene" aria-label="Dungeon view">
+          <div class="ceiling"></div>
+          <div class="wall wall-left"></div>
+          <div class="wall wall-right"></div>
+          <div class="floor"></div>
+          <div id="farWall" class="far-wall">
+            <div id="door" class="door"><span></span></div>
+          </div>
+          <div id="enemySprite" class="enemy-sprite hidden" aria-hidden="true">☠</div>
+          <div id="lootSprite" class="loot-sprite hidden" aria-hidden="true">✦</div>
+        </div>
+
+        <div class="room-copy">
+          <div>
+            <p id="roomLabel" class="room-label"></p>
+            <h2 id="roomTitle"></h2>
+          </div>
+          <p id="roomDescription"></p>
+        </div>
+
+        <div id="movement" class="controls movement-controls">
+          <button data-move="left">← Left</button>
+          <button data-move="forward" class="primary">↑ Forward</button>
+          <button data-move="right">Right →</button>
+          <button data-move="back">↓ Back</button>
+        </div>
+
+        <div id="combat" class="controls combat-controls hidden">
+          <button id="attackBtn" class="danger">Attack</button>
+          <button id="powerBtn">Power attack</button>
+          <button id="potionBtn">Drink potion</button>
+          <button id="fleeBtn">Flee</button>
+        </div>
+
+        <div id="lootControls" class="controls hidden">
+          <button id="lootBtn" class="primary">Take loot</button>
+          <button id="leaveLootBtn">Leave it</button>
+        </div>
+      </section>
+
+      <aside class="side-panel">
+        <section class="panel hero-panel">
+          <div class="panel-title-row">
+            <h3 id="heroName">Kael the Fighter</h3>
+            <span id="levelBadge" class="badge">Level 1</span>
+          </div>
+          <div class="stat">
+            <label for="classSelect">Class</label>
+            <select id="classSelect">
+              <option value="fighter">Fighter</option>
+              <option value="rogue">Rogue</option>
+              <option value="wizard">Wizard</option>
+              <option value="cleric">Cleric</option>
+            </select>
+          </div>
+          <div class="stat"><span>HP</span><strong id="hpText"></strong></div>
+          <div class="bar"><div id="hpBar" class="bar-fill"></div></div>
+          <div class="stats-grid">
+            <div><span>AC</span><strong id="acText"></strong></div>
+            <div><span>Attack</span><strong id="attackText"></strong></div>
+            <div><span>Gold</span><strong id="goldText"></strong></div>
+            <div><span>XP</span><strong id="xpText"></strong></div>
+          </div>
+        </section>
+
+        <section id="enemyPanel" class="panel hidden">
+          <div class="panel-title-row">
+            <h3 id="enemyName"></h3>
+            <span id="enemyAc" class="badge"></span>
+          </div>
+          <div class="stat"><span>Enemy HP</span><strong id="enemyHpText"></strong></div>
+          <div class="bar enemy"><div id="enemyHpBar" class="bar-fill"></div></div>
+        </section>
+
+        <section class="panel">
+          <h3>Inventory</h3>
+          <ul id="inventoryList" class="inventory"></ul>
+        </section>
+
+        <section class="panel log-panel">
+          <h3>Adventure log</h3>
+          <div id="log" class="log" aria-live="polite"></div>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <p class="eyebrow">Campaign result</p>
+      <h2 id="modalTitle"></h2>
+      <p id="modalText"></p>
+      <button id="modalRestart" class="primary">Play again</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
