@@ -8,20 +8,31 @@ const rooms={
   throne:{title:'The Shattered Throne',desc:'The lost crown rests on a cracked throne. Its guardian rises from the darkness as you enter.',moves:{back:'armoury',left:'chapel'},boss:true,enemy:{name:'Crown Warden',hp:25,ac:14,attack:5,damage:[1,10],xp:120,gold:40}}
 };
 
+const classes={
+  fighter:{name:'Kael the Fighter',hp:26,ac:13,attack:4,damage:[1,8],weapon:'Iron longsword',special:'Power attack'},
+  rogue:{name:'Nyx the Rogue',hp:20,ac:14,attack:5,damage:[1,6],weapon:'Twin daggers',special:'Sneak strike'},
+  wizard:{name:'Orin the Wizard',hp:17,ac:10,attack:6,damage:[1,10],weapon:'Ashwood focus',special:'Arcane bolt'},
+  cleric:{name:'Mara the Cleric',hp:23,ac:13,attack:4,damage:[1,8],weapon:'Warhammer',special:'Sacred strike'}
+};
+
 let state;
 const $=id=>document.getElementById(id);
-const els={roomLabel:$('roomLabel'),roomTitle:$('roomTitle'),roomDescription:$('roomDescription'),movement:$('movement'),combat:$('combat'),lootControls:$('lootControls'),enemySprite:$('enemySprite'),lootSprite:$('lootSprite'),enemyPanel:$('enemyPanel'),enemyName:$('enemyName'),enemyAc:$('enemyAc'),enemyHpText:$('enemyHpText'),enemyHpBar:$('enemyHpBar'),hpText:$('hpText'),hpBar:$('hpBar'),acText:$('acText'),attackText:$('attackText'),goldText:$('goldText'),xpText:$('xpText'),levelBadge:$('levelBadge'),inventoryList:$('inventoryList'),log:$('log'),modal:$('modal'),modalTitle:$('modalTitle'),modalText:$('modalText')};
+const els={heroName:$('heroName'),classSelect:$('classSelect'),roomLabel:$('roomLabel'),roomTitle:$('roomTitle'),roomDescription:$('roomDescription'),movement:$('movement'),combat:$('combat'),lootControls:$('lootControls'),enemySprite:$('enemySprite'),lootSprite:$('lootSprite'),enemyPanel:$('enemyPanel'),enemyName:$('enemyName'),enemyAc:$('enemyAc'),enemyHpText:$('enemyHpText'),enemyHpBar:$('enemyHpBar'),hpText:$('hpText'),hpBar:$('hpBar'),acText:$('acText'),attackText:$('attackText'),goldText:$('goldText'),xpText:$('xpText'),levelBadge:$('levelBadge'),inventoryList:$('inventoryList'),log:$('log'),modal:$('modal'),modalTitle:$('modalTitle'),modalText:$('modalText'),powerBtn:$('powerBtn')};
 
-function freshState(){return{room:'gate',hp:22,maxHp:22,ac:12,attack:4,damage:[1,8],gold:0,xp:0,level:1,potions:2,inventory:['Iron longsword','2× healing potion'],cleared:{},looted:{},enemy:null,won:false};}
+function freshState(){
+  const classKey=els.classSelect.value;
+  const hero=classes[classKey];
+  return{classKey,room:'gate',hp:hero.hp,maxHp:hero.hp,ac:hero.ac,attack:hero.attack,damage:hero.damage,gold:0,xp:0,level:1,potions:2,inventory:[hero.weapon,'2× healing potion'],cleared:{},looted:{},enemy:null,won:false};
+}
 function roll(sides){return Math.floor(Math.random()*sides)+1}
 function damage([n,s]){let total=0;for(let i=0;i<n;i++)total+=roll(s);return total}
 function log(msg){const p=document.createElement('p');p.innerHTML=msg;els.log.prepend(p)}
 
-function start(){state=freshState();els.log.innerHTML='';els.modal.classList.add('hidden');log('<strong>The delve begins.</strong> Find the Shattered Crown and survive its guardian.');enterRoom('gate',true)}
+function start(){state=freshState();els.log.innerHTML='';els.modal.classList.add('hidden');const hero=classes[state.classKey];log(`<strong>${hero.name}</strong> enters the ruin. Find the Shattered Crown and survive its guardian.`);enterRoom('gate',true)}
 
 function enterRoom(key,initial=false){state.room=key;const room=rooms[key];if(!initial)log(`You enter <strong>${room.title}</strong>.`);if(room.enemy&&!state.cleared[key])state.enemy={...room.enemy,maxHp:room.enemy.hp};else state.enemy=null;render();}
 
-function render(){const room=rooms[state.room];els.roomLabel.textContent=room.boss?'Boss chamber':state.enemy?'Hostile encounter':room.loot&&!state.looted[state.room]?'Something glitters here':'Dungeon chamber';els.roomTitle.textContent=room.title;els.roomDescription.textContent=room.desc;
+function render(){const room=rooms[state.room];const hero=classes[state.classKey];els.heroName.textContent=hero.name;els.powerBtn.textContent=hero.special;els.roomLabel.textContent=room.boss?'Boss chamber':state.enemy?'Hostile encounter':room.loot&&!state.looted[state.room]?'Something glitters here':'Dungeon chamber';els.roomTitle.textContent=room.title;els.roomDescription.textContent=room.desc;
   document.querySelectorAll('[data-move]').forEach(btn=>{const dir=btn.dataset.move;btn.disabled=!room.moves[dir]||!!state.enemy;btn.style.opacity=room.moves[dir]?1:.35});
   const inCombat=!!state.enemy;els.combat.classList.toggle('hidden',!inCombat);els.movement.classList.toggle('hidden',inCombat);
   els.enemySprite.classList.toggle('hidden',!inCombat);els.enemyPanel.classList.toggle('hidden',!inCombat);
@@ -32,7 +43,7 @@ function render(){const room=rooms[state.room];els.roomLabel.textContent=room.bo
 }
 
 function move(dir){const target=rooms[state.room].moves[dir];if(!target||state.enemy)return;enterRoom(target)}
-function playerAttack(power=false){if(!state.enemy)return;const d20=roll(20);const bonus=state.attack+(power?0:1);const hit=d20===20||d20+bonus>=state.enemy.ac;if(d20===1){log('You roll a <strong>natural 1</strong>. Your strike goes wide.');enemyTurn();return}
+function playerAttack(power=false){if(!state.enemy)return;const d20=roll(20);const bonus=state.attack+(power?0:1);const hit=d20===20||d20+bonus>=state.enemy.ac;if(d20===1){log('You roll a <strong>natural 1</strong>. Your strike goes wide.');enemyTurn();render();return}
   if(hit){let dealt=damage(state.damage)+(power?3:0);if(d20===20)dealt+=damage(state.damage);state.enemy.hp-=dealt;log(`You roll <strong>${d20}</strong> and hit ${state.enemy.name} for <strong>${dealt}</strong> damage${d20===20?' — critical hit!':''}.`);if(state.enemy.hp<=0){winFight();return}}else log(`You roll <strong>${d20}</strong>. The attack misses AC ${state.enemy.ac}.`);enemyTurn();render();}
 function enemyTurn(){if(!state.enemy)return;const d20=roll(20);if(d20===1){log(`${state.enemy.name} fumbles its attack.`);return}if(d20===20||d20+state.enemy.attack>=state.ac){let dealt=damage(state.enemy.damage);if(d20===20)dealt+=damage(state.enemy.damage);state.hp-=dealt;log(`${state.enemy.name} hits you for <strong>${dealt}</strong> damage${d20===20?' — critical!':''}.`);if(state.hp<=0){state.hp=0;render();end(false)}}else log(`${state.enemy.name} misses you.`)}
 function winFight(){const enemy=state.enemy;state.cleared[state.room]=true;state.gold+=enemy.gold;state.xp+=enemy.xp;log(`<strong>${enemy.name} falls.</strong> You gain ${enemy.xp} XP and ${enemy.gold} gold.`);state.enemy=null;checkLevel();if(rooms[state.room].boss){render();end(true);return}render()}
@@ -43,5 +54,5 @@ function takeLoot(){const loot=rooms[state.room].loot;if(!loot||state.looted[sta
 function end(win){els.modal.classList.remove('hidden');els.modalTitle.textContent=win?'The Crown Is Yours':'Your Delve Ends Here';els.modalText.textContent=win?`You defeat the Crown Warden and claim the Shattered Crown with ${state.hp} HP remaining, ${state.gold} gold and ${state.xp} XP. The first dungeon is complete.`:`You fall in ${rooms[state.room].title}. The dungeon resets, but the dice may favour you next time.`}
 
 document.querySelectorAll('[data-move]').forEach(b=>b.addEventListener('click',()=>move(b.dataset.move)));
-$('attackBtn').addEventListener('click',()=>playerAttack(false));$('powerBtn').addEventListener('click',()=>playerAttack(true));$('potionBtn').addEventListener('click',potion);$('fleeBtn').addEventListener('click',flee);$('lootBtn').addEventListener('click',takeLoot);$('leaveLootBtn').addEventListener('click',()=>{state.looted[state.room]=true;log('You leave the item where it lies.');render()});$('newGameBtn').addEventListener('click',start);$('modalRestart').addEventListener('click',start);
+$('attackBtn').addEventListener('click',()=>playerAttack(false));els.powerBtn.addEventListener('click',()=>playerAttack(true));$('potionBtn').addEventListener('click',potion);$('fleeBtn').addEventListener('click',flee);$('lootBtn').addEventListener('click',takeLoot);$('leaveLootBtn').addEventListener('click',()=>{state.looted[state.room]=true;log('You leave the item where it lies.');render()});$('newGameBtn').addEventListener('click',start);$('modalRestart').addEventListener('click',start);els.classSelect.addEventListener('change',start);
 start();
