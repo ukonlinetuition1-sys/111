@@ -10,56 +10,97 @@ Rank by: user harm / conversion impact / search impact / breadth of root cause /
 ## P0 — must resolve before release
 
 ### AGENCY-001 — Fix the two shared contrast root causes
-**Evidence:** 76 serious colour-contrast findings. Element `comp-kd5pdf7t` appears in 40 findings; `comp-mtx9m2nn` appears in 33. Together they account for 73/76 findings.
+**Fresh evidence:** full-site scan `ed9a0e17-284b-4650-8055-0dbbe187c915` found 95 serious findings, including 87 colour-contrast findings.
+
+- `comp-kd5pdf7t` appears on **47/47 successfully scanned pages**.
+- `comp-mtx9m2nn` appears on **37 Blog surfaces only**.
+- Together they account for **84/87 contrast findings** and therefore **84/95 total serious findings**.
 
 **Primary roles:** Accessibility Auditor, UI Designer, UX Architect, Frontend Developer, Minimal Change Engineer, Evidence Collector, Reality Checker.
 
-**Action:** identify the foreground/background pairs for those recurring elements, adjust the shared style/template once where possible, then run a fresh full-site accessibility scan.
+**Action:**
+1. Treat `comp-kd5pdf7t` as a global-shell/global-widget defect and identify the exact dynamic component/style.
+2. Treat `comp-mtx9m2nn` as a shared Wix Blog-template defect; rendered HTML confirms it wraps the Blog TPA component.
+3. Fix each once at source rather than patching pages individually.
+4. Re-scan the whole site.
 
-**Acceptance:** no remaining serious contrast finding attributable to either element; no visual regression across desktop/tablet/mobile.
+**Acceptance:** neither element generates a serious contrast finding; no desktop/tablet/mobile regression.
 
-### AGENCY-002 — Fix homepage accessibility findings
+### AGENCY-002 — Fix homepage accessibility and placeholder imagery
 **Evidence:** homepage has 9 serious findings: 6 alternative-text, 2 contrast, 1 heading-structure.
 
-**Primary roles:** Accessibility Auditor, UI Designer, Content Creator, UX Researcher, Evidence Collector.
+Rendered media metadata identifies the six flagged images as stock/placeholder assets including `Friendship Selfie.jpg`, `Modern Apartment Building`, `Orange Container.jpg`, `IMM_public storage.jpeg`, `Apartment Building.jpg` and one unnamed Wix stock image.
 
-**Action:** classify each of the six images as meaningful or decorative; supply concise contextual alt text for meaningful images and mark decorative images appropriately. Repair the heading outline to one meaningful H1 with logical nesting. Resolve the two contrast failures.
+Heading finding `comp-mtxzhe29__item-j9ples3e` renders as `<h3>11+ tuition</h3>`.
 
-**Acceptance:** fresh homepage scan returns none of these nine findings; keyboard and screen-reader spot check completed.
+**Primary roles:** Accessibility Auditor, UI Designer, Content Creator, UX Researcher, Brand Guardian, Evidence Collector.
 
-### AGENCY-003 — Resolve the ten failed accessibility-scan pages
-**Evidence:** 50 pages discovered; 10 could not be analysed. Failed means unknown, not clean.
+**Action:**
+- Remove or replace unrelated placeholder imagery rather than inventing alt text merely to silence a checker.
+- If a retained image is decorative, explicitly mark it decorative after visual confirmation; if meaningful, supply contextual alt text.
+- Review the page outline and repair the heading hierarchy semantically.
+- Resolve the two contrast findings, using the shared global fix where applicable.
+
+**Acceptance:** fresh homepage scan clears the nine findings; imagery is relevant or intentionally decorative; keyboard/screen-reader spot check passes.
+
+### AGENCY-003 — Resolve the one persistent accessibility-scan failure
+**Fresh evidence:** full-site scan discovered 50 pages; 47 scanned and 3 failed. Targeted rescans then cleared two of those three:
+- `11+ Exam Formats: Why the Target School Matters` → completed; only the two shared contrast findings.
+- `Online Primary English & Maths Tuition: Build Strong Foundations` → completed; only the two shared contrast findings.
+- `11+ Online Tuition: A Parent’s Guide to Targeted Preparation` → failed again (`ACCESSIBILITY_SCAN_FAILURE_CODE_ANALYSIS_FAILED`).
+
+Independent rendered-page extraction succeeds for the persistent failure. Rich-content comparison found no duplicate node IDs or obvious malformed heading structure.
 
 **Primary roles:** Accessibility Auditor, Test Automation Engineer, Test Results Analyzer, CMS/Frontend roles, Reality Checker.
 
-**Action:** identify why each failed page could not be scanned; determine whether each is obsolete, duplicate, broken or valid content; repair or retire safely; rescan.
+**Action:** diagnose the remaining scanner-specific failure without rewriting valid article content on speculation. Re-test after shared Blog-template repair before considering content normalisation.
 
-**Acceptance:** every intended public page scans successfully or has a documented reason for exclusion.
+**Acceptance:** page scans successfully, or evidence demonstrates an external scanner limitation and manual accessibility review covers the page.
 
 ## P1 — structure, search and conversion
 
-### AGENCY-010 — Map `blank-*` Wix pages to intended information architecture
-**Evidence:** the native build exposes several static URLs such as `/blank-2`, `/blank-3`, `/blank-4`, `/blank-6` and `/blank-7`; the GitHub reference sitemap defines the intended clean structure `/how-it-works/`, `/gcse/`, `/11-plus/`, `/primary/`, `/about/`, `/resources/`, `/faq/`, `/contact/`, `/work-with-us/`.
+### AGENCY-010 — Rename `blank-*` Wix pages to clean information architecture
+**Proven page map:**
+- `/blank` → How It Works
+- `/blank-1` → GCSE
+- `/blank-2` → 11+
+- `/blank-3` → Primary
+- `/blank-4` → About
+- `/blank-5` → FAQ
+- `/blank-6` → Enquire
+- `/blank-7` → Work With Us
+- `/blog` → Resources
+
+Desired routes from the approved reference sitemap:
+`/how-it-works/`, `/gcse/`, `/11-plus/`, `/primary/`, `/about/`, `/resources/`, `/faq/`, `/contact/`, `/work-with-us/`.
 
 **Primary roles:** SEO Specialist, UX Architect, Information/Workflow roles, Content Creator, Senior Project Manager.
 
-**Action:** identify each current Wix page, assign one canonical purpose and clean slug, avoid duplicate intent, plan redirects for any old public route.
+**Action:** rename static Studio routes in the editor. Public Wix REST docs currently expose redirects/SEO records but no safe static Studio-page slug mutation. Do not create redirects before route changes because Wix redirects take precedence over an existing page.
 
 **Acceptance:** each intended page has one stable human-readable slug and no accidental duplicate target.
 
 ### AGENCY-011 — SEO cannibalisation and page-ownership audit
 **Primary roles:** SEO Specialist, Research Synthesist, Content Creator, AI Citation Strategist, AEO Foundations Architect.
 
-**Action:** map every service/content page to one primary search intent before changing title/H1/meta; use Search Console when available, otherwise use the pre-GSC URL/intention method; identify page conflicts and consolidate.
+**Action:** map every service/content page to one primary search intent before broader title/H1/meta work; use Search Console when available, otherwise use the pre-GSC URL/intention method; identify page conflicts and consolidate.
+
+**Current progress:** approved page-specific titles and meta descriptions have already been applied to the **saved/draft** revisions of all nine non-home static pages: 9 successes, 0 failures. They remain unpublished while staging `noindex` is in force.
 
 **Acceptance:** one owner per primary keyword cluster; titles/H1s/metadata do not compete unnecessarily.
 
 ### AGENCY-012 — Verify enquiry-form instance and retire duplicate only if safe
-**Evidence:** two active Wix Forms schemas exist. `UK Online Tuition Enquiry` is the stronger schema; an older `Tuition Enquiry` also exists.
+**Evidence:** two enabled Wix Forms schemas exist.
+
+Preferred `UK Online Tuition Enquiry` (`68a44711-2ab0-42e9-a9dd-a51f15b90e50`) has the intended fields, responsive layouts, advanced spam protection and on-page confirmation.
+
+Older `Tuition Enquiry` (`620fb792-4907-43cf-b223-22f37762b036`) also remains enabled.
+
+Wix Forms documentation confirms submissions are recorded per schema but do not distinguish multiple page instances of the same schema, so schema/submission data alone cannot prove which page embeds which form.
 
 **Primary roles:** Growth Hacker, Offer & Lead Gen Strategist, Privacy Engineer/Data Privacy Officer, Minimal Change Engineer, QA.
 
-**Action:** identify which schema is embedded on the intended Enquire page and whether the older schema is used anywhere. Keep the stronger form. Do not delete/disable the older schema until dependency is proven absent.
+**Action:** use rendered/editor evidence to identify the Enquire-page form instance. Keep the stronger form. Do not delete/disable the older schema until dependency is proven absent.
 
 **Acceptance:** one intended enquiry experience is used by visitors; no live page breaks; existing submissions/data remain intact.
 
