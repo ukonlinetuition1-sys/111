@@ -1,17 +1,13 @@
-# UK Online Tuition – standalone rebuild
+# UK Online Tuition — project control
 
-Production-oriented static rebuild of UK Online Tuition.
+This repository contains a static reference rebuild plus the AI control files used to support the **canonical native Wix Studio rebuild**.
 
-## Architecture
-- Multi-page static HTML, not an iframe or overlay.
-- Shared CSS and small progressive-enhancement JavaScript.
-- Core content is present in HTML for crawlability.
-- GitHub Pages deployment workflow.
-- Staging is intentionally `noindex` until the production domain is switched.
+The static HTML is reference/staging material; it is **not** the canonical production implementation and must not override the native-Wix rule in `AGENTS.md`.
 
-## Before production launch
-1. Connect the secure enquiry form delivery service.
-2. Remove the page-level `noindex,nofollow` meta tags.
-3. Change `robots.txt` to allow crawling and reference `sitemap.xml`.
-4. Connect `www.ukonlinetuition.co.uk`.
-5. Run accessibility, mobile and performance checks on the final domain.
+## AI entry points
+- `AGENTS.md` — stable safeguards and workflow.
+- `agency/AI_ROUTING.md` — selective specialist routing.
+- `agency/PROJECT_STATE.md` — current evidence/blockers.
+- `agency/WORK_QUEUE.md` — execution priorities.
+
+For Wix work, follow `AGENTS.md` and keep staging/non-production work unpublished until its release gates pass.
