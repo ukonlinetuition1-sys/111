@@ -23,4 +23,7 @@ jobs:
           grep -Fq 'f0b72792-2a3e-4da1-a601-a49094d465d3' AGENTS.md
           grep -Fq 'NEEDS WORK' agency/PROJECT_STATE.md
           grep -Fq 'NEEDS WORK' agency/WORK_QUEUE.md
+          test "$(wc -c < AGENTS.md)" -le 2200
+          test "$(wc -c < agency/AI_ROUTING.md)" -le 1800
+          ! grep -Eqi 'run (all|every) .*agent|all .*agents.*(every|each) task' AGENTS.md agency/AI_ROUTING.md
           echo "Project control checks passed."
