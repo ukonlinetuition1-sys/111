@@ -25,5 +25,7 @@ jobs:
           grep -Fq 'NEEDS WORK' agency/WORK_QUEUE.md
           test "$(wc -c < AGENTS.md)" -le 2200
           test "$(wc -c < agency/AI_ROUTING.md)" -le 1800
+          test "$(wc -c < agency/CONTEXT_MAP.md)" -le 1000
+          grep -Fq 'This repository is not the production website.' README.md
           ! grep -Eqi 'run (all|every) .*agent|all .*agents.*(every|each) task' AGENTS.md agency/AI_ROUTING.md
           echo "Project control checks passed."
