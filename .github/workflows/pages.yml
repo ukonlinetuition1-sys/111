@@ -1,32 +1,21 @@
-name: Deploy static site to Pages
+name: Static reference checks
 on:
-  push:
-    branches: ["main"]
+  pull_request:
   workflow_dispatch:
 permissions:
   contents: read
-  pages: write
-  id-token: write
-concurrency:
-  group: pages
-  cancel-in-progress: true
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  check:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      - name: Upload site
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - uses: actions/checkout@v4
+      - name: Verify reference files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f AGENTS.md
+          test -f agency/AI_ROUTING.md
+          test -f agency/PROJECT_STATE.md
+          test -f agency/WORK_QUEUE.md
+          test -f index.html
+          echo "Reference repository checks passed."
