@@ -1,13 +1,7 @@
-# UK Online Tuition — project control
+# UK Online Tuition — Wix project control
 
-This repository contains a static reference rebuild plus the AI control files used to support the **canonical native Wix Studio rebuild**.
+AI control and static reference material for the canonical native Wix Studio rebuild. **This repository is not the production website.**
 
-The static HTML is reference/staging material; it is **not** the canonical production implementation and must not override the native-Wix rule in `AGENTS.md`.
+Start with `AGENTS.md`. Load `agency/AI_ROUTING.md`, `PROJECT_STATE.md` or `WORK_QUEUE.md` only when the task requires them. Static HTML/CSS/JS is reference/staging material and must not override the native-Wix rules.
 
-## AI entry points
-- `AGENTS.md` — stable safeguards and workflow.
-- `agency/AI_ROUTING.md` — selective specialist routing.
-- `agency/PROJECT_STATE.md` — current evidence/blockers.
-- `agency/WORK_QUEUE.md` — execution priorities.
-
-For Wix work, follow `AGENTS.md` and keep staging/non-production work unpublished until its release gates pass.
+No repository workflow publishes the website automatically.
