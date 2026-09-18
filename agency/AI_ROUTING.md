@@ -1,69 +1,35 @@
-# AI Routing — Selective Specialist Use
+# AI Routing
 
-Purpose: get specialist quality without paying the context and execution cost of loading or running the whole Agency roster.
+Use specialists only when they materially improve the result.
 
-## Routing rule
-Start with zero delegated specialists. Add the smallest useful team only when the task benefits from expertise or independent checking.
+## Budget
+- Simple task: 0.
+- Specialist task: 1.
+- Important implementation: 1 implementer + 1 independent verifier.
+- High-risk/cross-domain: up to 3 relevant specialists.
+- Full roster: only for an explicit full-roster audit/release challenge.
 
-### Website implementation
-Primary: Frontend Developer.
-Add UI Designer for visual-system/layout decisions.
-Add Accessibility or QA specialist for accessibility and cross-device verification.
-Add SEO specialist only for search/metadata/internal-linking work.
-Add Security Reviewer only when forms, authentication, data handling, scripts or integrations change.
+Stop adding specialists when the next role duplicates existing work, the result is evidenced and verified, or the blocker is access/approval rather than reasoning.
 
-### Wix operations
-Use Wix-native tooling for site settings, forms, CMS, SEO, apps and supported configuration. Use browser control only where the visual editor requires it. Keep browser runs bounded to one clearly testable objective.
+## Website routes
+- Implementation → Frontend Developer.
+- Layout/visual system → UI Designer.
+- Accessibility/cross-device QA → Accessibility/QA specialist.
+- Search/metadata/internal linking → SEO specialist.
+- Forms, scripts, integrations or data handling → Security/Privacy reviewer when material.
+- Wix configuration → Wix-native tooling first; bounded browser/editor work only when necessary.
 
-### Tutoring automation or resource systems
-Use an automation/workflow specialist for architecture.
-Use an education/content specialist for pedagogy and exam-board accuracy.
-Use a QA/reviewer pass for generated student-facing resources.
-Do not involve website/design agents unless the task actually affects the website.
+## Tutoring/resource automation
+- Workflow architecture → automation specialist.
+- Pedagogy/exam accuracy → education/content specialist.
+- Student-facing output → independent QA.
+Do not involve website agents unless the task affects the website.
 
-### Research
-Use a research specialist when evidence must be gathered or reconciled across sources. Add a domain specialist only when domain interpretation is material.
+## Research
+Use a research specialist for multi-source evidence/reconciliation; add a domain specialist only when interpretation requires it.
 
-### Release gate
-A broader review is justified before publication or another high-impact irreversible change. Even then, route by domain first. Use the complete installed roster only when the user explicitly asks for a full-roster audit.
+## Handoff
+Pass only: objective, relevant evidence, constraints, deliverable and verification.
+Return only useful findings: evidence, action, risk and confidence.
 
-## Delegation budget
-- Simple task: 0 specialists.
-- Normal specialist task: 1 specialist.
-- Important implementation: 1 implementer + 1 verifier.
-- High-risk/cross-domain task: up to 3 relevant specialists.
-- Full roster: exceptional, explicit only.
-
-## Context budget
-Give a specialist only:
-1. the objective;
-2. relevant constraints;
-3. the files/evidence needed;
-4. the expected output.
-
-Do not pass the whole project history when a focused brief will do.
-
-## Handoff format
-Keep handoffs compact:
-- Objective
-- Evidence
-- Constraints
-- Deliverable
-- Verification
-
-Keep specialist returns compact:
-- Finding
-- Evidence
-- Action
-- Risk
-- Confidence
-
-## Stop conditions
-Stop delegation when:
-- the next agent would duplicate an existing role;
-- the answer is already evidenced and verified;
-- further review is unlikely to change the implementation;
-- the task is blocked on user access/approval rather than reasoning.
-
-## Installed roster
-The large Agency roster can remain installed. Installation itself is not a reason to invoke every agent. Treat it as an expert library, not a meeting attended by everyone.
+Treat the installed Agency roster as an expert library, not a meeting attended by everyone.
