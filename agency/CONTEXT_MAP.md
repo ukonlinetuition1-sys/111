@@ -2,12 +2,11 @@
 
 Keep persistent context small.
 
-- `/AGENTS.md` — stable rules and protected targets; always applicable.
-- `agency/AI_ROUTING.md` — read only when specialist delegation may help.
-- `agency/PROJECT_STATE.md` — current evidence, blockers and release state.
-- `agency/WORK_QUEUE.md` — active priorities; not a history log.
-- `agency/ROSTER_COVERAGE.md` — read only for Agency/full-roster questions.
-- `README.md` — repository architecture/launch notes.
+- `AGENTS.md` — stable safeguards; always applicable.
+- `AI_ROUTING.md` — only when delegation may help.
+- `PROJECT_STATE.md` — only when current evidence/blockers matter.
+- `WORK_QUEUE.md` — only when prioritising/executing project work.
+- `ROSTER_COVERAGE.md` — full-roster questions only.
+- `README.md` — repository purpose.
 
-## Hygiene
-Put changing facts in PROJECT_STATE, not AGENTS.md. Remove completed low-value queue detail once reflected in state. Do not duplicate rules/evidence across files unless safety requires it. Link to evidence instead of pasting it repeatedly. Prefer summaries to transcripts. Date state snapshots DD/MM/YYYY.
+Put changing facts in PROJECT_STATE, not AGENTS. Keep WORK_QUEUE current, not historical. Do not duplicate rules/evidence unless safety requires it. Prefer links/summaries to pasted evidence. Date state snapshots DD/MM/YYYY.
