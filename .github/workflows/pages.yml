@@ -1,5 +1,7 @@
-name: Static reference checks
+name: Project control checks
 on:
+  push:
+    branches: ["main"]
   pull_request:
   workflow_dispatch:
 permissions:
@@ -9,13 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Verify reference files
+      - name: Verify AI control system
         shell: bash
         run: |
           set -euo pipefail
-          test -f AGENTS.md
-          test -f agency/AI_ROUTING.md
-          test -f agency/PROJECT_STATE.md
-          test -f agency/WORK_QUEUE.md
-          test -f index.html
-          echo "Reference repository checks passed."
+          for f in AGENTS.md agency/AI_ROUTING.md agency/CONTEXT_MAP.md agency/PROJECT_STATE.md agency/WORK_QUEUE.md; do
+            test -s "$f"
+          done
+          grep -Fq 'a0b54523-3b3b-499d-b8cc-590fff1266bb' AGENTS.md
+          grep -Fq '64c79e1f-b6eb-444d-aa03-a4495e2b68f8' AGENTS.md
+          grep -Fq 'f0b72792-2a3e-4da1-a601-a49094d465d3' AGENTS.md
+          grep -Fq 'NEEDS WORK' agency/PROJECT_STATE.md
+          grep -Fq 'NEEDS WORK' agency/WORK_QUEUE.md
+          echo "Project control checks passed."
