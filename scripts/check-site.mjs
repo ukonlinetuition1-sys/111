@@ -22,5 +22,5 @@ for (const page of pages) {
   refs++;
  }
 }
-for(const script of ['assets/main.js','assets/live-design.js']) execFileSync(process.execPath,['--check',script]);
+for(const script of ['assets/main.js','assets/live-design.js','assets/motion.js']) execFileSync(process.execPath,['--check',script]);
 console.log(`PASS: ${pages.length} HTML pages, ${refs} local references, unique IDs, single H1, draft noindex and JavaScript syntax.`);
