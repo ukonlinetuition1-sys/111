@@ -4,3 +4,5 @@ dist/
 qa-screenshots/
 
 qa-preview.html
+
+qa-check-*.html

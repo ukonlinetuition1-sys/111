@@ -2,7 +2,7 @@
 
 **This repository is not the production website.**
 
-This branch reuses the existing ten-page HTML/CSS/JS site as a coded draft following user approval on 21 September 2026. It does not alter or replace any Wix site. No workflow deploys this site.
+This branch reuses the existing ten-page HTML/CSS/JS site as a coded draft following user approval on 21 September 2026. Its latest visual update matches the current rendered live site across all ten pages. It does not alter or replace any Wix site. No workflow deploys this site.
 
 ## View and develop
 
