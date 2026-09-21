@@ -14,6 +14,7 @@ for (const page of pages) {
  for(const m of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
   const url=m[1]; if(/^(https?:|mailto:|tel:|data:)/.test(url)) continue;
   const [relative,hash]=url.split('#');
+  if(relative && relative.split('?')[0].endsWith('/')) fail(`directory link is not portable in downloaded preview: ${url}`);
   const dest=relative ? path.normalize(path.join(path.dirname(page),relative.split('?')[0])) : page;
   const target=dest.endsWith('.html')||path.extname(dest) ? dest : path.join(dest,'index.html');
   try {await access(target)}catch{fail(`broken local reference ${url}`)}
