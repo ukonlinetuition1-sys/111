@@ -1,7 +1,22 @@
-# UK Online Tuition — Wix project control
+# UK Online Tuition — unpublished coded draft
 
-AI control and static reference material for the canonical native Wix Studio rebuild. **This repository is not the production website.**
+**This repository is not the production website.**
 
-Start with `AGENTS.md`. Load `agency/AI_ROUTING.md`, `PROJECT_STATE.md` or `WORK_QUEUE.md` only when the task requires them. Static HTML/CSS/JS is reference/staging material and must not override the native-Wix rules.
+This branch reuses the existing ten-page HTML/CSS/JS site as a coded draft following user approval on 21 September 2026. It does not alter or replace any Wix site. No workflow deploys this site.
 
-No repository workflow publishes the website automatically.
+## View and develop
+
+Use a current Node.js version supported by Vite 8, then run:
+
+```sh
+npm ci
+npm run dev
+```
+
+`npm run check` checks local references, page structure, draft indexing protection and JavaScript syntax. `npm run build` runs those checks and writes the static draft to `dist/`. You can also open `index.html` directly after downloading and extracting the files.
+
+## Draft limits
+
+The enquiry form only checks sample details locally. It cannot send or store enquiries. Existing Wix forms, notification routing and Smart Chat remain unchanged and are not connected to this draft. No Blog content migration, domain changes or publication is included.
+
+Read `agency/QA_2026-09-21.md` for tested behaviour and remaining integration work. Historical Wix findings in the state and queue documents are retained as context, not instructions to modify protected sites.

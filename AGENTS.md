@@ -1,16 +1,16 @@
 # UK Online Tuition — Agent Contract
 
 ## Mission
-Improve the canonical native Wix Studio rebuild efficiently and safely.
+Current authorised work: an unpublished coded draft on a separate GitHub branch. Reuse this repository; do not deploy or modify Wix.
 
 ## Target
-- Canonical Wix Studio site: `a0b54523-3b3b-499d-b8cc-590fff1266bb`
+- Protected Wix Studio site: `a0b54523-3b3b-499d-b8cc-590fff1266bb`
 - Never modify production `64c79e1f-b6eb-444d-aa03-a4495e2b68f8` or PRE-ASTRA backup `f0b72792-2a3e-4da1-a601-a49094d465d3`.
 - Never create another Wix site.
 - Do not publish or switch the production domain without explicit approval.
 
 ## Build rules
-Use native Wix Studio elements/forms. No ASTRA, Harmony overlay, iframe, full-page HTML replacement, body-hiding script or legacy-site overlay.
+For this coded draft, edit repository HTML/CSS/JS only. No injection into Wix. Preserve navy #10213B, blue #2556E8, cream #F7F3EA, paper #FCFBF8. Keep forms preview-only; never send enquiries. Preserve Wix forms/routing and Smart Chat. Harmony `9acfbd18-b294-48b8-add2-4e0c912bead9` is also protected. Native Wix rules still apply to any future Wix work.
 
 ## Work
 1. Inspect only the evidence needed.

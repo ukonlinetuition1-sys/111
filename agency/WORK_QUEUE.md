@@ -1,4 +1,13 @@
 # Work Queue — UK Online Tuition
+
+Updated: 21/09/2026 · Active target: coded draft branch · Launch: **NEEDS WORK**
+
+Completed: reuse ten pages; repair responsive Home lesson card; improve shared navigation and keyboard behaviour; verify Home → GCSE → Contact; local no-send validation; build/link checks.
+
+Next: approved enquiry integration and privacy/content review, followed by remaining page-level release checks. Keep preview validation local until integration is explicitly authorised. Do not resume historical Wix changes or publish from this queue.
+
+## Historical Wix queue — inactive for this branch
+
 Updated: 18/09/2026 · Target: `a0b54523-3b3b-499d-b8cc-590fff1266bb` · Release: **NEEDS WORK**
 
 Fix shared causes before symptoms. Use `AI_ROUTING.md`.

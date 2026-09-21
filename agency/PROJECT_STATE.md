@@ -1,4 +1,15 @@
 # UK Online Tuition — Project State
+
+Updated: 21/09/2026 · Coded draft saved and tested locally · Launch: **NEEDS WORK**
+
+The user approved the GitHub coded-draft route after remote Harmony editor failures. The current branch reuses the ten existing pages. Home now has a semantic lesson card and responsive layout; shared navigation and preview-only form behaviour are repaired. Build and browser evidence are in `QA_2026-09-21.md`.
+
+All four Wix sites are protected. No deployment, merge, domain/indexing change, form submission or chat occurred. This is not a claim that the Harmony draft was repaired. Its rendered/save state remains unverified.
+
+Remaining: choose and implement an approved enquiry integration while preserving required fields/routing; verify content/privacy and resource scope; full cross-page responsive/accessibility release checks; explicit deployment approval.
+
+## Historical Wix state — 18 September 2026
+
 Updated: 18/09/2026 · Reality: **NEEDS WORK**
 
 ## Sites
