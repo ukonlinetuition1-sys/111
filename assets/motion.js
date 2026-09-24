@@ -3,7 +3,7 @@
  const slides=[...track.querySelectorAll('.motion-slide')],toggle=document.querySelector('#motion-toggle'),status=document.querySelector('#slide-position'),reduce=matchMedia('(prefers-reduced-motion: reduce)');
  let paused=reduce.matches,index=0,timer;
  const sync=()=>{document.documentElement.classList.toggle('motion-paused',paused);toggle.textContent=paused?'Play animations':'Pause animations';toggle.setAttribute('aria-pressed',String(paused));};
- const move=(step,manual=false)=>{index=(index+step+slides.length)%slides.length;track.scrollTo({left:slides[index].offsetLeft-slides[0].offsetLeft,behavior:reduce.matches?'instant':'smooth'});if(manual)status.textContent=`0${index+1} / 03`;};
+ const move=(step,manual=false)=>{index=(index+step+slides.length)%slides.length;track.scrollTo({left:slides[index].offsetLeft-slides[0].offsetLeft,behavior:reduce.matches?'auto':'smooth'});if(manual)status.textContent=`0${index+1} / 03`;};
  const start=()=>{clearInterval(timer);if(!paused)timer=setInterval(()=>{if(!document.hidden&&!track.matches(':hover')&&!track.contains(document.activeElement))move(1);},6500);};
  toggle.addEventListener('click',()=>{paused=!paused;sync();start();});
  document.querySelectorAll('[data-slide]').forEach(button=>button.addEventListener('click',()=>{paused=true;sync();start();move(Number(button.dataset.slide),true);}));
