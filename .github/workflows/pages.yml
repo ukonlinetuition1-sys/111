@@ -38,3 +38,7 @@ jobs:
         run: npm run check
       - name: Build unpublished preview
         run: npm run build
+      - name: Package GitHub Pages preview artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
