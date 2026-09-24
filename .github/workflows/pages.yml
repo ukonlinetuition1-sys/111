@@ -10,7 +10,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Verify project controls
         shell: bash
         run: |
@@ -28,7 +28,7 @@ jobs:
           test "$(wc -c < agency/CONTEXT_MAP.md)" -le 1000
           grep -Fq 'This repository is not the production website.' README.md
           ! grep -Eqi 'run (all|every) .*agent|all .*agents.*(every|each) task' AGENTS.md agency/AI_ROUTING.md
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
@@ -39,6 +39,6 @@ jobs:
       - name: Build unpublished preview
         run: npm run build
       - name: Package GitHub Pages preview artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: dist
