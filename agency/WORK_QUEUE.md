@@ -1,32 +1,19 @@
 # Work Queue — UK Online Tuition
 
-Updated: 21/09/2026 · Active target: coded draft branch · Launch: **NEEDS WORK**
+Updated: 24/09/2026 · Active target: coded draft branch · Draft status: **COMPLETE FOR REVIEW**
 
-Completed: reuse ten pages; repair responsive Home lesson card; improve shared navigation and keyboard behaviour; verify Home → GCSE → Contact; local no-send validation; build/link checks.
+Completed: reuse ten pages plus 404; match the current visual direction; responsive Home and animated subject showcase; shared navigation and keyboard behaviour; resource filtering; interactive teaching-stage controls; UK English document metadata; page titles, descriptions, canonicals and draft noindex protection; local link/structure checks; Home → service → Enquire journey; enquiry field design aligned with the existing Harmony Wix form schema; privacy-conscious form copy.
 
-Next: approved enquiry integration and privacy/content review, followed by remaining page-level release checks. Keep preview validation local until integration is explicitly authorised. Do not resume historical Wix changes or publish from this queue.
+## Release gate
 
-## Historical Wix queue — inactive for this branch
+The coded draft is finished as an unpublished review build. Do not merge, deploy, publish, switch domains, remove draft noindex protection or send a test enquiry without Dan's explicit approval.
 
-Updated: 18/09/2026 · Target: `a0b54523-3b3b-499d-b8cc-590fff1266bb` · Release: **NEEDS WORK**
+The Harmony AI Wix site remains unchanged. Its existing enabled **UK Online Tuition Enquiry** form is available as the intended enquiry backend, but the standalone coded preview deliberately remains no-send because a browser-safe authenticated submission route has not been established through this static draft. Email remains available as the fallback contact route.
 
-Fix shared causes before symptoms. Use `AI_ROUTING.md`.
+Before any future release: perform final rendered browser/device QA in the actual deployment environment, connect and test enquiry delivery, then make the indexing/domain decision explicitly. These are release actions, not unfinished page-building work.
 
-| ID | Priority | Work | Dependency / verification | Status |
-|---|---|---|---|---|
-| UOT-001 | P0 | Fix shared contrast components `comp-kd5pdf7t` (47 findings) and Blog `comp-mtx9m2nn` (37); then full rescan. | Identify in Studio; verify zero serious findings for both + responsive QA. | BLOCKED: editor |
-| UOT-002 | P0 | Homepage: resolve 6 alt-text, 2 contrast, 1 heading finding; remove/replace irrelevant placeholder media rather than inventing alt text. | Studio visual/semantic review; rescan + keyboard/screen-reader spot check. | BLOCKED: editor |
-| UOT-003 | P0 | Re-test persistent Parent’s Guide scan failure after Blog repair; change article only if evidence implicates content. | UOT-001; successful scan or documented scanner limitation + manual review. | WAITING |
-| UOT-010 | P1 | Replace `blank*` routes with intended clean routes in PROJECT_STATE. | Studio; verify unique routes/navigation; redirects only after changes if needed. | BLOCKED: editor |
-| UOT-011 | P1 | Confirm Enquire uses preferred form `68a44711-2ab0-42e9-a9dd-a51f15b90e50`; retain older form until proven unused. | Studio; responsive render + safe submission confirmation. | BLOCKED: editor |
-| UOT-012 | P1 | Test Home → service → Enquire → confirmation on desktop/tablet/mobile + keyboard. | UOT-010/011. | WAITING |
-| UOT-013 | P1 | Assign primary search intent; check title/H1/meta/canonical/internal-link conflicts. | Draft metadata already complete. | PARTIAL |
-| UOT-020 | P2 | Technical SEO/AEO: canonicals, sitemap, structured data, robots/noindex cutover. | Keep staging noindex until release. | TODO |
-| UOT-021 | P2 | Trust/content evidence review; remove unsupported claims. | Source/evidence check. | TODO |
-| UOT-022 | P2 | Performance/responsive QA on key pages. | Mobile/tablet/desktop evidence. | TODO |
-| UOT-023 | P2 | Security/privacy review of forms, scripts, integrations, credentials and disclosures. | No critical issue open. | TODO |
-| UOT-024 | P2 | Verify analytics baseline for enquiries, service→enquiry, organic landings and form completion. | No uplift claims without data. | TODO |
+## Protected sites
 
-After core QA: content clusters/internal linking, useful distribution, consented email lifecycle, then paid-media readiness.
-
-Close-out: full accessibility rescan + core-journey QA + Reality Gate. READY only when release criteria are evidenced.
+- Production: `64c79e1f-b6eb-444d-aa03-a4495e2b68f8` — never change without explicit instruction.
+- PRE-ASTRA backup: `f0b72792-2a3e-4da1-a601-a49094d465d3` — preserve.
+- Harmony AI target: `9acfbd18-b294-48b8-add2-4e0c912bead9` — no publication without explicit approval.
