@@ -1,4 +1,15 @@
 # UK Online Tuition — Project State
+
+Updated: 24/09/2026 · Coded draft · Status: **COMPLETE FOR REVIEW / UNPUBLISHED**
+
+The existing ten-page coded website plus 404 has been finished as a review draft on PR #9. It retains the live-inspired visual foundation, responsive layouts, interactive teaching controls, resource filtering, mobile navigation, illustrated carousel and motion treatment. UK English document metadata is now consistent across the draft.
+
+The Harmony AI Wix site `9acfbd18-b294-48b8-add2-4e0c912bead9` was inspected through the Wix connector and left unchanged. It contains an enabled form named **UK Online Tuition Enquiry** whose fields match the coded enquiry design closely: parent name, email, optional phone, year/stage, subject/test, main difficulty/goal and optional availability. The coded preview remains deliberately no-send until an authenticated, deployment-safe submission route is explicitly approved and tested.
+
+No Wix site was published or mutated, PR #9 was not merged, production was not changed, and indexing remains disabled in the coded draft. Remaining items are release gates rather than page-building work: rendered deployment QA, real enquiry delivery test, and explicit approval for merge/deployment/indexing/domain changes.
+
+## Historical Wix state — 18 September 2026
+
 Updated: 18/09/2026 · Reality: **NEEDS WORK**
 
 ## Sites
