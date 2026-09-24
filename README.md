@@ -2,7 +2,7 @@
 
 **This repository is not the production website.**
 
-This branch reuses the existing ten-page HTML/CSS/JS site as a coded draft following user approval on 21 September 2026. Its latest visual update matches the current rendered live site across all ten pages. It does not alter or replace any Wix site. No workflow deploys this site.
+This branch reuses the existing ten-page HTML/CSS/JS site as a coded draft following user approval on 21 September 2026. Its latest visual update matches the current rendered live-site direction across all ten pages. The review draft is now complete, but deliberately unpublished. It does not alter or replace any Wix site. No workflow deploys this site.
 
 ## View and develop
 
@@ -14,6 +14,10 @@ npm run dev
 ```
 
 `npm run check` checks local references, page structure, draft indexing protection and JavaScript syntax. `npm run build` runs those checks and writes the static draft to `dist/`. You can also open `index.html` directly after downloading and extracting the files.
+
+## Review status
+
+PR #9 is the finished review branch. Keep it unmerged and keep `noindex,nofollow` until explicit release approval. The Harmony AI site remains unchanged.
 
 ## Draft limits
 
